@@ -54,7 +54,7 @@ struct JournalView: View {
             .navigationBarTitle("Journal Entries", displayMode: .inline)
             .navigationDestination(for: String.self) { value in
                 if value == "AddJournalEntry" {
-                    Text("AddJournalEntryView placeholder")  // Placeholder for AddJournalEntryView
+                    JournalEntryView() // Placeholder for AddJournalEntryView
                 }
             }
         }
