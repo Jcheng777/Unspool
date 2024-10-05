@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A072E7332CB1D06E00F869F1 /* JournalEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A072E7322CB1D06E00F869F1 /* JournalEntryView.swift */; };
 		A07910242CB10D0F008ED9A0 /* UnwindApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07910232CB10D0F008ED9A0 /* UnwindApp.swift */; };
 		A07910262CB10D0F008ED9A0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07910252CB10D0F008ED9A0 /* ContentView.swift */; };
 		A07910282CB10D12008ED9A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A07910272CB10D12008ED9A0 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A072E7322CB1D06E00F869F1 /* JournalEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryView.swift; sourceTree = "<group>"; };
 		A07910202CB10D0F008ED9A0 /* Unwind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unwind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A07910232CB10D0F008ED9A0 /* UnwindApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnwindApp.swift; sourceTree = "<group>"; };
 		A07910252CB10D0F008ED9A0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				A07910252CB10D0F008ED9A0 /* ContentView.swift */,
 				A07910372CB18879008ED9A0 /* JournalEntry.swift */,
 				A07910312CB10DA5008ED9A0 /* JournalView.swift */,
+				A072E7322CB1D06E00F869F1 /* JournalEntryView.swift */,
 				A07910352CB11990008ED9A0 /* MoodView.swift */,
 				A07910232CB10D0F008ED9A0 /* UnwindApp.swift */,
 				A07910272CB10D12008ED9A0 /* Assets.xcassets */,
@@ -153,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A07910322CB10DA5008ED9A0 /* JournalView.swift in Sources */,
+				A072E7332CB1D06E00F869F1 /* JournalEntryView.swift in Sources */,
 				A079103E2CB1C787008ED9A0 /* HomeView.swift in Sources */,
 				A07910262CB10D0F008ED9A0 /* ContentView.swift in Sources */,
 				A07910382CB18879008ED9A0 /* JournalEntry.swift in Sources */,
