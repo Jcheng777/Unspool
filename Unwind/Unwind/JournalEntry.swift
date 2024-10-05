@@ -9,8 +9,24 @@ import Foundation
 
 import SwiftUI
 
-struct JournalEntry: Identifiable {
-    var id = UUID()
-    var date: String
-    var content: String
+struct JournalEntry: Identifiable, Decodable {
+    let id: String  // Assuming id is a String and not necessarily a UUID
+    let title: String
+    let date: String
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case date
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        // Attempt to decode "id", provide a new UUID if decoding fails
+        self.id = (try? container.decode(String.self, forKey: .id)) ?? UUID().uuidString
+        
+        self.title = try container.decode(String.self, forKey: .title)
+        self.date = try container.decode(String.self, forKey: .date)
+    }
 }
