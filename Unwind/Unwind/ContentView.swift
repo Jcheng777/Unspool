@@ -9,35 +9,40 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        TabView {
-            HomeView()
-                .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
-                }
-            
-            JournalView()
-                .tabItem {
-                    Image(systemName: "book")
-                    Text("Journal")
-                }
-            
-            ChatView()
-                .tabItem {
-                    Image(systemName: "message")
-                    Text("Chat")
-                }
-            
-            
-            MoodView()
-                .tabItem {
-                    Image(systemName: "smiley")
-                    Text("Mood")
-                }
+        ZStack {
+            Color(red: 0.94, green: 0.94, blue: 0.94)
+                .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+            TabView {
+                HomeView()
+                    .tabItem {
+                        Image("chatbot")
+                    }
+                
+                JournalView()
+                    .tabItem {
+                        Image("journal")
+                    }
+                
+                HomeView()
+                    .tabItem {
+                        Image("home icon")
+                    }
+                
+                MoodView()
+                    .tabItem {
+                        Image("graph")
+                    }
+                
+                ProfileView()
+                    .tabItem {
+                        Image("profile")
+                    }
+            }
+            .toolbarBackground(.indigo, for: .tabBar)
+            .cornerRadius(32)
         }
     }
 }
-
 
 #Preview {
     ContentView()
