@@ -10,7 +10,8 @@ struct ChatView: View {
     @State private var userInput: String = "" // Holds the text the user inputs
     @State private var messages: [Message] = [] // Array to store conversation messages
     @State private var showPrompt = true // State to control the visibility of the prompt message
-    
+    @State private var conversationId: String? // Variable to hold conversation ID
+
     var body: some View {
         VStack {
             ScrollView {
@@ -25,7 +26,7 @@ struct ChatView: View {
                             .cornerRadius(10)
                             .padding(.bottom, 5)
                     }
-                    
+
                     ForEach(messages) { message in
                         Text(message.text)
                             .padding(10)
@@ -58,7 +59,7 @@ struct ChatView: View {
         }
         .padding(.bottom, 10) // Padding at the bottom to keep text input above screen bottom
     }
-    
+
     // Function to send user input to the backend API
     func sendMessage() {
         guard !userInput.isEmpty else { return } // Don't send empty messages
@@ -73,14 +74,19 @@ struct ChatView: View {
         
         let url = URL(string: "https://flask-app-91222939065.us-east1.run.app/callCompanion")! // Replace with your actual backend URL
         
-        let bearerToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjI4YTQyMWNhZmJlM2RkODg5MjcxZGY5MDBmNGJiZjE2ZGI1YzI0ZDQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIzMjU1NTk0MDU1OS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6IjMyNTU1OTQwNTU5LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAxMTcwMzIwOTMzMjQwMzYwOTMwIiwiaGQiOiJjb3JuZWxsLmVkdSIsImVtYWlsIjoiY2RjMjM2QGNvcm5lbGwuZWR1IiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiIyekVWbU9GMGFkUlM0YWd6clNJMWRRIiwiaWF0IjoxNzI4MTg1NTUwLCJleHAiOjE3MjgxODkxNTB9.I23JsHb8_PlHXKC9l7KDetq0TncAgjTqnjebhaYuvWW4J4mS6Jcblp4bZ-aT6AHs0jitl_AX_XStegYIQA6o4Bmyel0ZTOfPxYs-KE-yNaJDgL7D3c_XhCgGy6kTVogITuoaGscnGvjzGotWkIJ0rNTQNGgaNFYZF9UGBwN63lfn5QLUdlCP2xFVToHngFcUxHAkB4GpBX9TaXtJwbrebO1l2PT6cCq4E23qrZ7TrMPlc58Jv2ezVYQJXd8Ygf806oO_aj4FEwKrXdkHlQ0VwD0ruYD3gdVL51mc4TKB_2vgwhUxGGWzbY4w2fxlQMqGrk8bbypOXMdg4iyBA8H_zg" // Use your actual bearer token
+        let bearerToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjI4YTQyMWNhZmJlM2RkODg5MjcxZGY5MDBmNGJiZjE2ZGI1YzI0ZDQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIzMjU1NTk0MDU1OS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6IjMyNTU1OTQwNTU5LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAxMTcwMzIwOTMzMjQwMzYwOTMwIiwiaGQiOiJjb3JuZWxsLmVkdSIsImVtYWlsIjoiY2RjMjM2QGNvcm5lbGwuZWR1IiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJDdDBKNmU4TWxCU2hpY2JjcE5XZGlRIiwiaWF0IjoxNzI4MTkwMDM5LCJleHAiOjE3MjgxOTM2Mzl9.POkcgv3rncDz0NtE-Te1AEcRt3jTm_JAHeCMn9K5QfKXHE046DECjBvKu30ebjWuCH_-p2Wj48yD_G3iwr0Jvgm4jmE_Ry8270BmYdJFL-6wVHnNGPE_GtiYyYfaVvWAXm_BzI5LqTL7s3uzkWDCaP5yx2fnEpCi7pJrYR46GurUfuJVe8m8z8CFVNeQT3QcDIR3fTZxi7dygH_3NBySqS6bMhaft_GFLo7J1P_WTizfId4mQ4O2xniYLcZs8NiyAfrqEuu6R8Hfnl0G5v7EPusDFwzWQx1QRkT1akw6oiXrSlizaWO2A9DxziZxrwS8nrHnviDNwd7pEAe4X0-dng" // Use your actual bearer token
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(bearerToken)", forHTTPHeaderField: "Authorization")
         
-        let body: [String: String] = ["message": userInput]
+        // Create the body with conversationId (nil if first message)
+        var body: [String: Any] = ["message": userInput, "userId": "testUserId"]
+        if let conversationId = self.conversationId {
+            body["conversationId"] = conversationId // Add if it's not nil
+        } // If conversationId is nil, it won't be added to the body
+        
         let jsonData = try? JSONSerialization.data(withJSONObject: body)
 
         request.httpBody = jsonData
@@ -92,13 +98,25 @@ struct ChatView: View {
             }
             
             if let data = data {
-                if let responseString = String(data: data, encoding: .utf8) {
-                    let cleanedResponse = responseString.replacingOccurrences(of: "\"", with: "")
-                    
-                    DispatchQueue.main.async {
-                        // Add API response to messages array without quotation marks
-                        self.messages.append(Message(text: cleanedResponse, isUser: false))
+                do {
+                    // Attempt to parse the response as JSON
+                    if let responseDict = try JSONSerialization.jsonObject(with: data) as? [String: Any] {
+                        // Extract the conversationId from the response if it exists
+                        if let newConversationId = responseDict["conversationId"] as? String {
+                            DispatchQueue.main.async {
+                                self.conversationId = newConversationId // Update conversationId
+                            }
+                        }
+
+                        // Assuming the response also has a message field
+                        if let responseMessage = responseDict["response"] as? String {
+                            DispatchQueue.main.async {
+                                self.messages.append(Message(text: responseMessage, isUser: false)) // Add AI response
+                            }
+                        }
                     }
+                } catch {
+                    print("Failed to parse response: \(error)")
                 }
             }
         }.resume()
@@ -113,4 +131,3 @@ struct ChatView_Previews: PreviewProvider {
         ChatView()
     }
 }
-
