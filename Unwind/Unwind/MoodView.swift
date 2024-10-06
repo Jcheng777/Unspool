@@ -24,8 +24,8 @@ struct SummaryView: View {
                     Text("Week")
                         .padding()
                         .frame(maxWidth: .infinity) // Make the button stretch to fill space
-                        .background(selectedOption == "Week" ? Color.blue : Color.gray.opacity(0.2))
-                        .foregroundColor(selectedOption == "Week" ? Color.white : Color.black)
+                        .background(selectedOption == "Week" ? Color(red: 0.6, green: 0.45, blue: 0.76) : Color(red:0.78, green:0.68, blue:0.91))
+                        .foregroundColor(selectedOption == "Week" ? Color.white : Color(red: 0.49, green: 0.36, blue: 0.63))
                         .cornerRadius(8)
                 }
 
@@ -35,8 +35,8 @@ struct SummaryView: View {
                     Text("Month")
                         .padding()
                         .frame(maxWidth: .infinity) // Make the button stretch to fill space
-                        .background(selectedOption == "Month" ? Color.blue : Color.gray.opacity(0.2))
-                        .foregroundColor(selectedOption == "Month" ? Color.white : Color.black)
+                        .background(selectedOption == "Month" ? Color(red: 0.6, green: 0.45, blue: 0.76) : Color(red:0.78, green:0.68, blue:0.91))
+                        .foregroundColor(selectedOption == "Month" ? Color.white : Color(red: 0.49, green: 0.36, blue: 0.63))
                         .cornerRadius(8)
                 }
             }
@@ -77,14 +77,17 @@ struct SummaryView: View {
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .offset(y:8)
+                            .foregroundColor(.white)
+
 
                         Text("Journal Entries")
                             .font(.headline)
                             .padding(.top, 10) // Increased padding here
                             .offset(y:-15)
+                            .foregroundColor(.white)
                     }
                     .frame(maxWidth: .infinity) // Make the box stretch to fill space
-                    .background(Color.gray.opacity(0.2)) // Background for the box
+                    .background(Color(red: 0.67, green: 0.56, blue: 0.8)) // Background for the box
                     .cornerRadius(8)
 
                     // Box for Check-ins
@@ -94,14 +97,18 @@ struct SummaryView: View {
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .offset(y:8)
+                            .foregroundColor(.white)
+
 
                         Text("Check-ins")
                             .font(.headline)
                             .padding(.top, 10) // Increased padding here
                             .offset(y:-15)
+                            .foregroundColor(.white)
+
                     }
                     .frame(maxWidth: .infinity) // Make the box stretch to fill space
-                    .background(Color.gray.opacity(0.2)) // Background for the box
+                    .background(Color(red: 0.67, green: 0.56, blue: 0.8)) // Background for the box
                     .cornerRadius(8)
                 }
                 .padding(.top, 10)
@@ -128,7 +135,8 @@ struct SummaryView: View {
                     Text("Check out the feelings blanket I made for you!")
                         .font(.headline)
                         .padding()
-                        .background(Color.blue.opacity(0.2)) // Different colored background
+                        .foregroundColor(Color(red: 0.54, green: 0.45, blue: 0.65))
+                        .background(Color(red: 0.94, green: 0.92, blue: 0.98)) // Different colored background
                         .cornerRadius(8)
                 }
             }

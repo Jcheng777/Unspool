@@ -35,6 +35,7 @@ struct RatingView: View {
             // Slider for mood rating
             Slider(value: $selectedMood, in: 1...5, step: 1)
                 .padding()
+                .tint(Color(red: 0.67, green: 0.56, blue: 0.8))
 
             // Button to submit mood rating
             Button(action: {
@@ -43,7 +44,7 @@ struct RatingView: View {
                 Text("Check-in")
                     .font(.headline)
                     .padding()
-                    .background(Color.blue)
+                    .background(Color(red: 0.67, green: 0.56, blue: 0.8))
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }

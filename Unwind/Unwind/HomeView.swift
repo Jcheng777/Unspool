@@ -27,7 +27,7 @@ struct HomeView: View {
                     NavigationLink(destination: ChatView()) {
                         VStack(spacing: 20) {
                             // Top "Good morning!" text
-                            Text("Good morning!")
+                            Text("Good morning Dean!")
                             
                                 .font(
                                     Font.custom("MADE Carving Soft PERSONAL USE", size: 28)

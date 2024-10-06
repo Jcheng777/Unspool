@@ -26,11 +26,12 @@ struct ChatView: View {
                 // List of messages
                 LazyVStack(alignment: .leading, spacing: 10) {
                     if showPrompt {
-                        Text("What would you like to talk about? I'm all ears!")
+                        Text("Hi Dean Bala! What would you like to talk about? I'm all ears!")
+                            .foregroundColor(.white)
                             .font(.headline)
                             .padding()
                             .frame(maxWidth: .infinity)
-                            .background(Color(.systemGray5)) // Box-like appearance
+                            .background(Color(red: 0.72, green: 0.62, blue: 0.83)) // Box-like appearance
                             .cornerRadius(10)
                             .padding(.bottom, 5)
                     }
@@ -39,7 +40,7 @@ struct ChatView: View {
                         Text(message.text)
                             .padding(10)
                             .foregroundColor(message.isUser ? .white : .black)
-                            .background(message.isUser ? Color.blue : Color.gray.opacity(0.2))
+                            .background(message.isUser ? Color(red:0.79, green:0.68, blue:0.9) : Color.gray.opacity(0.2))
                             .cornerRadius(10)
                             .frame(maxWidth: 300, alignment: message.isUser ? .trailing : .leading) // Align based on user or AI
                             .frame(maxWidth: .infinity, alignment: message.isUser ? .trailing : .leading) // Full width with appropriate alignment
@@ -67,7 +68,7 @@ struct ChatView: View {
                                 .font(.system(size: 12)) // Smaller font size
                                 .padding(8) // Smaller padding
                                 .frame(maxWidth: .infinity, minHeight: 40) // Set minHeight for smaller buttons
-                                .background(Color.blue.opacity(0.7))
+                                .background(Color(red:0.79, green:0.68, blue:0.9))
                                 .foregroundColor(.white)
                                 .cornerRadius(8)
                         }
