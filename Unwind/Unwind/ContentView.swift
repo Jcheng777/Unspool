@@ -13,7 +13,7 @@ struct ContentView: View {
             Color(red: 0.94, green: 0.94, blue: 0.94)
                 .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
             TabView {
-                HomeView()
+                ChatView()
                     .tabItem {
                         Image("chatbot")
                     }
@@ -38,9 +38,9 @@ struct ContentView: View {
                         Image("profile")
                     }
             }
-            .onAppear() {
-                UITabBar.appearance().backgroundColor = .white
-            }
+//            .onAppear() {
+//                UITabBar.appearance().backgroundColor = .white
+
 
         }
     }

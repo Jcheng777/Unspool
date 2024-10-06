@@ -1,49 +1,63 @@
-//
-//  JournalEntryView.swift
-//  Unwind
-//
-//  Created by Jesse Cheng on 10/5/24.
-//
-
-import Foundation
-
 import SwiftUI
+import Foundation
 
 struct JournalEntryView: View {
     @State private var title: String = ""
     @State private var content: String = ""
 
     var body: some View {
-        VStack {
-            TextField("Title", text: $title)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-
-            TextEditor(text: $content)
-                .frame(minHeight: 300)
+        VStack(spacing: 20) {
+            // Title Field
+            TextField("Title...", text: $title)
+                .padding(20)
+                .foregroundColor(Color(red: 0.37, green: 0.25, blue: 0.5))
+                .font(.system(size: 28, weight: .bold))
+                .background(Color(red: 0.94, green: 0.92, blue: 0.98))
+                .cornerRadius(40)
                 .padding(.horizontal)
-                .border(Color.gray, width: 1)
 
-            Spacer()
+            // TextEditor with Purple Background
+            ZStack(alignment: .topLeading) {
+                // Purple background
+                Color(red: 0.74, green: 0.64, blue: 0.94) // A soft purple background color
+                    .cornerRadius(40) // Rounded corners
+                    .padding(.horizontal)
 
-            Button("Save Entry") {
-                createJournalEntry(title: title, content: content)
+                // TextEditor
+                TextEditor(text: $content)
+                    .padding(25)
+                    .foregroundColor(Color(red: 0.37, green: 0.25, blue: 0.5))
+                    .font(.system(size: 20))
+                    .background(Color.clear) // Ensure the TextEditor background is clear so the ZStack background shows through
+                    .cornerRadius(40)
             }
-            .padding()
-            .background(Color.blue)
-            .foregroundColor(.white)
-            .cornerRadius(10)
+            .padding(.horizontal)
+
+            // Save Entry Button
+            Button(action: {
+                createJournalEntry(title: title, content: content) // Call the function to save the entry
+            }) {
+                Text("Save Entry")
+                    .font(.system(size: 20, weight: .bold))
+                    .padding()
+                    .frame(maxWidth: .infinity) // Make the button fill the width of the screen
+                    .background(Color(red: 0.64, green: 0.53, blue: 0.79)) // Purple background color for button
+                    .foregroundColor(.white) // White text color
+                    .cornerRadius(40) // Rounded corners
+                    .padding(.horizontal) // Horizontal padding for space on the sides
+            }
+            .padding(.bottom, 30) // Add some space at the bottom of the button
         }
-        .navigationTitle("New Journal Entry")
-        .padding()
-        
+        .background(Color(red: 0.94, green: 0.92, blue: 0.98).edgesIgnoringSafeArea(.all)) // Background to remove white space
+        .navigationTitle("")
+        .navigationBarTitleDisplayMode(.inline)
     }
-    
+
     // Function to send the journal entry to the Flask backend
     func createJournalEntry(title: String, content: String) {
         guard let url = URL(string: "https://flask-app-91222939065.us-east1.run.app/createJournalEntry") else { return }
         
-        let bearerToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjI4YTQyMWNhZmJlM2RkODg5MjcxZGY5MDBmNGJiZjE2ZGI1YzI0ZDQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIzMjU1NTk0MDU1OS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6IjMyNTU1OTQwNTU5LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAxMTcwMzIwOTMzMjQwMzYwOTMwIiwiaGQiOiJjb3JuZWxsLmVkdSIsImVtYWlsIjoiY2RjMjM2QGNvcm5lbGwuZWR1IiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJDdDBKNmU4TWxCU2hpY2JjcE5XZGlRIiwiaWF0IjoxNzI4MTkwMDM5LCJleHAiOjE3MjgxOTM2Mzl9.POkcgv3rncDz0NtE-Te1AEcRt3jTm_JAHeCMn9K5QfKXHE046DECjBvKu30ebjWuCH_-p2Wj48yD_G3iwr0Jvgm4jmE_Ry8270BmYdJFL-6wVHnNGPE_GtiYyYfaVvWAXm_BzI5LqTL7s3uzkWDCaP5yx2fnEpCi7pJrYR46GurUfuJVe8m8z8CFVNeQT3QcDIR3fTZxi7dygH_3NBySqS6bMhaft_GFLo7J1P_WTizfId4mQ4O2xniYLcZs8NiyAfrqEuu6R8Hfnl0G5v7EPusDFwzWQx1QRkT1akw6oiXrSlizaWO2A9DxziZxrwS8nrHnviDNwd7pEAe4X0-dng"
+        let bearerToken = "your_bearer_token_here" // Replace with your actual token
         
         // Get the current date and time
         let currentDate = Date()

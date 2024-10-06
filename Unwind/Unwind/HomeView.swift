@@ -85,20 +85,23 @@ struct HomeView: View {
                             
                             // Space to align with "Good morning!" button
                             HStack {
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                                    .foregroundColor(Color(red: 0.37, green: 0.25, blue: 0.5))
-                            }
+                                Image("Group (2)")
+                                    .resizable() // Makes the image scalable
+                                        .aspectRatio(contentMode: .fit) // Scales the image to fit the frame, maintaining the aspect ratio
+                                        .frame(width: 150, height: 150)
+                                        .offset(y:-55)
+
+                                
+                                }
                             .padding()
-                            .background(Color(red: 0.94, green: 0.92, blue: 0.98))
-                            .cornerRadius(15)
                         }
                         .padding(.horizontal, 20)
                         .padding(.vertical, 24)
-                        .frame(maxWidth: .infinity, alignment: .top)
+                        .frame(maxWidth: .infinity, maxHeight: 175, alignment: .top)
                         .background(
                             RoundedRectangle(cornerRadius: 32)
                                 .fill(Color(red: 0.94, green: 0.92, blue: 0.98))
+                            
                         )
                         .padding(5)
                         

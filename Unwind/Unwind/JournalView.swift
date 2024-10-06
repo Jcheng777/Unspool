@@ -1,14 +1,6 @@
-//
-//  JournalView.swift
-//  Unwind
-//
-//  Created by Jesse Cheng on 10/5/24.
-//
-
 import Foundation
 
 import SwiftUI
-
 
 struct JournalView: View {
     @State private var entries: [JournalEntry] = []
@@ -16,47 +8,38 @@ struct JournalView: View {
     
     var body: some View {
         NavigationStack(path: $path) {
-            List {
-                // Section for "Add New Entry" Button
-                Section {
-                    Button(action: {
-                        path.append("AddJournalEntry")
-                    }) {
-                        Image(systemName: "plus")
-                            .font(.system(size: 24)) // Adjust the size of the "+" symbol
-                            .foregroundColor(Color.purple) // Change the color to match your design
-                            .frame(width: 100, height: 40) // Adjust the button's size
-                            .background(Color.purple.opacity(0.1)) // Light purple background
-                            .cornerRadius(20) // Rounded corners
-                        
-//                        Text("Add New Entry")
-//                            .frame(maxWidth: .infinity)
-//                            .padding()
-//                            .background(Color.pink.opacity(0.3))
-//                            .cornerRadius(10)
-                    }
-                    .padding(.vertical, 10)
-                    .frame(width: 500, height: 110)
-
+            VStack {
+                // Button outside of List
+                Button(action: {
+                    path.append("AddJournalEntry")
+                }) {
+                    Image(systemName: "plus")
+                        .font(.system(size: 40))
+                        .foregroundColor(Color(red: 0.37, green: 0.25, blue: 0.5)) // Change the color to match your design
                 }
-                .listRowBackground(Color(UIColor.systemGray6))
-                
-                // Section for displaying journal entries
-                Section {
-                    ForEach(entries) { entry in
-                        NavigationLink(destination: JournalEntryDetailView(entry: entry)) {
-                            VStack(alignment: .leading) {
-                                Text(entry.title)   // Display the title of the journal entry
-                                    .font(.headline)
-                                Text(entry.date)    // Display the date
-                                    .font(.subheadline)
+                .frame(width: 345, height: 110) // Adjust size as needed
+                .background(Color(red: 0.94, green: 0.92, blue: 0.98)) // Light purple background
+                .cornerRadius(30) // Rounded corners
+                .padding(.bottom, 20) // Add some space below the button
+
+                // List for displaying journal entries
+                List {
+                    Section {
+                        ForEach(entries) { entry in
+                            NavigationLink(destination: JournalEntryDetailView(entry: entry)) {
+                                VStack(alignment: .leading) {
+                                    Text(entry.title)   // Display the title of the journal entry
+                                        .font(.headline)
+                                    Text(entry.date)    // Display the date
+                                        .font(.subheadline)
+                                }
+                                .padding(.vertical, 5)
                             }
-                            .padding(.vertical, 5)
                         }
                     }
                 }
+                .listStyle(InsetGroupedListStyle())
             }
-            .listStyle(InsetGroupedListStyle())
             .navigationBarTitle("Journal Entries", displayMode: .inline)
             .navigationDestination(for: String.self) { value in
                 if value == "AddJournalEntry" {
@@ -75,7 +58,7 @@ struct JournalView: View {
     func fetchJournalEntries() {
         guard let url = URL(string: "https://flask-app-91222939065.us-east1.run.app/getAllJournalEntries") else { return }
         
-        let bearerToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjI4YTQyMWNhZmJlM2RkODg5MjcxZGY5MDBmNGJiZjE2ZGI1YzI0ZDQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIzMjU1NTk0MDU1OS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6IjMyNTU1OTQwNTU5LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAxMTcwMzIwOTMzMjQwMzYwOTMwIiwiaGQiOiJjb3JuZWxsLmVkdSIsImVtYWlsIjoiY2RjMjM2QGNvcm5lbGwuZWR1IiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJDdDBKNmU4TWxCU2hpY2JjcE5XZGlRIiwiaWF0IjoxNzI4MTkwMDM5LCJleHAiOjE3MjgxOTM2Mzl9.POkcgv3rncDz0NtE-Te1AEcRt3jTm_JAHeCMn9K5QfKXHE046DECjBvKu30ebjWuCH_-p2Wj48yD_G3iwr0Jvgm4jmE_Ry8270BmYdJFL-6wVHnNGPE_GtiYyYfaVvWAXm_BzI5LqTL7s3uzkWDCaP5yx2fnEpCi7pJrYR46GurUfuJVe8m8z8CFVNeQT3QcDIR3fTZxi7dygH_3NBySqS6bMhaft_GFLo7J1P_WTizfId4mQ4O2xniYLcZs8NiyAfrqEuu6R8Hfnl0G5v7EPusDFwzWQx1QRkT1akw6oiXrSlizaWO2A9DxziZxrwS8nrHnviDNwd7pEAe4X0-dng" // Replace with your actual token
+        let bearerToken = "zLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6IjMyNTU1OTQwNTU5LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAxMTcwMzIwOTMzMjQwMzYwOTMwIiwiaGQiOiJjb3JuZWxsLmVkdSIsImVtYWlsIjoiY2RjMjM2QGNvcm5lbGwuZWR1IiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJSdzdqcVRkNWFkdng3WTNOS0tocklRIiwiaWF0IjoxNzI4MTk2NDcwLCJleHAiOjE3MjgyMDAwNzB9.N1_bqExNsIrwrPf6Kh7A7TNadweCo8DXQ-oEw0hNYpOPFQgK3fmvwQwSGmmfZbda27MDMRUxuDxZ0hoyS6wOJcqBM2vwWKCmuEwyrWtJQBQVUUnNdWjAs2xXtwMStHtHs5e5Dgs4yVHf4tn5PGZ6umuLxpUqHsYJgKBteo3QA0an27majIYd8gjdRn1RoKiScpHtaOSpzvee01aM_lRCIGwK_4z9CB0PdWKx6YZ6fT4QCYXOoq8PXeSZqvluzmlNCfnlD9pbwJVr64aE1EEeQy8833dl3fbeLQQuG_2mkqTMcAYNGusMzx7zdiphIeK4azzGrSa4nzB6zanBpYdIzA" // Replace with your actual token
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
