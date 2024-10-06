@@ -43,7 +43,7 @@ struct JournalEntryView: View {
     func createJournalEntry(title: String, content: String) {
         guard let url = URL(string: "https://flask-app-91222939065.us-east1.run.app/createJournalEntry") else { return }
         
-        let bearerToken = "<insert_token_here>"
+        let bearerToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjI4YTQyMWNhZmJlM2RkODg5MjcxZGY5MDBmNGJiZjE2ZGI1YzI0ZDQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIzMjU1NTk0MDU1OS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6IjMyNTU1OTQwNTU5LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAxMTcwMzIwOTMzMjQwMzYwOTMwIiwiaGQiOiJjb3JuZWxsLmVkdSIsImVtYWlsIjoiY2RjMjM2QGNvcm5lbGwuZWR1IiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJ6VGl1Xy1RWGNWcTRZUFg2RUVYMVJRIiwiaWF0IjoxNzI4MTc2NzQ1LCJleHAiOjE3MjgxODAzNDV9.sAI_iEOC4BbE9D8TZXWnIxPNJ5OdOo0Gx9htjLXt-7uREUdvPJbRsme-772NjR36dLcoXm8Il2CVXXYUA2-00eb-PAegMo7qbJoqdgysDNpFZSq8CjVR55exfTdxb-rLeF20UrieQwAlJVOHjwekyr3FWQdwuSTT3YTTxNuevWGwgrf8B5LCHnT8XDeVAEJXoSW6_qFDc3YeLHppDaLaupExGl1zJJswlOTj79BA7MmLporO4ZdsepYyU4omgNC6K_U9hVZ-jm5du_xqGS6qVeLcroLVm9zUxlAjFxGMfoBY_L2rlO6OcLyFLzY8IY5zaFdtes5K3YYjV3i6BSYR-g"
         
         // Get the current date and time
         let currentDate = Date()
