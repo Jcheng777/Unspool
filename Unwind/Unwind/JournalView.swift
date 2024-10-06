@@ -11,7 +11,7 @@ import SwiftUI
 
 
 struct JournalView: View {
-    @State private var entries: [JournalEntry] = []  // Initialize with an empty array
+    @State private var entries: [JournalEntry] = []
     @State private var path = NavigationPath()
 
     var body: some View {
@@ -30,22 +30,24 @@ struct JournalView: View {
                     }
                     .padding(.vertical, 10)
                 }
-                .listRowBackground(Color(UIColor.systemGray6))  // Adds the gray background like in the screenshot
+                .listRowBackground(Color(UIColor.systemGray6))
 
                 // Section for displaying journal entries
                 Section {
                     ForEach(entries) { entry in
-                        VStack(alignment: .leading) {
-                            Text(entry.title)   // Display the title of the journal entry
-                                .font(.headline)
-                            Text(entry.date)    // Display the date
-                                .font(.subheadline)
+                        NavigationLink(destination: JournalEntryDetailView(entry: entry)) {
+                            VStack(alignment: .leading) {
+                                Text(entry.title)   // Display the title of the journal entry
+                                    .font(.headline)
+                                Text(entry.date)    // Display the date
+                                    .font(.subheadline)
+                            }
+                            .padding(.vertical, 5)
                         }
-                        .padding(.vertical, 5)
                     }
                 }
             }
-            .listStyle(InsetGroupedListStyle())  // This style helps achieve the look of grouped sections
+            .listStyle(InsetGroupedListStyle())
             .navigationBarTitle("Journal Entries", displayMode: .inline)
             .navigationDestination(for: String.self) { value in
                 if value == "AddJournalEntry" {
@@ -57,12 +59,14 @@ struct JournalView: View {
             }
         }
     }
+
+
     
     // Function to fetch journal entries from the backend
     func fetchJournalEntries() {
         guard let url = URL(string: "https://flask-app-91222939065.us-east1.run.app/getAllJournalEntries") else { return }
         
-        let bearerToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjI4YTQyMWNhZmJlM2RkODg5MjcxZGY5MDBmNGJiZjE2ZGI1YzI0ZDQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIzMjU1NTk0MDU1OS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6IjMyNTU1OTQwNTU5LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAxMTcwMzIwOTMzMjQwMzYwOTMwIiwiaGQiOiJjb3JuZWxsLmVkdSIsImVtYWlsIjoiY2RjMjM2QGNvcm5lbGwuZWR1IiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJYc1ZBYTlqWHlTTWxWSENmMW81bnhBIiwiaWF0IjoxNzI4MTcxMDY3LCJleHAiOjE3MjgxNzQ2Njd9.kHnaLaQxrMGHJBxyBeERHTDHtyDmqQ75Z-UoD9NIONa5PYEDsXmRrpJ5Mw-CkUsDgFQO4ZDXoctUnCRLzeTT0XdF7V3tOb3P5zhRUPv-J9k3uSl--P8LDvPgLleVvsBAzTe-Z_ogxU4RiDFCzIfdfGM2T1DydMB-Ya83F1i7hkvj7_oWWDof4DA2DX_rcsI1_MeQqsSbgVfj8OcvC_eQVmSKKbxPTR5HaozhejelFALC5xzWc3Fq-2_ZDJyt0Ep3JjE9bBv6vV7JwckWaecaFVfU-WKQAePgBTPdTz-ehIixuTd80s4omslBFsSLj16hVXJQ9L4ybdc5o3bgTlvHRA" // Replace with your actual token
+        let bearerToken = "<insert_token_here>" // Replace with your actual token
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
