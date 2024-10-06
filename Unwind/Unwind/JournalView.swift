@@ -13,7 +13,7 @@ import SwiftUI
 struct JournalView: View {
     @State private var entries: [JournalEntry] = []
     @State private var path = NavigationPath()
-
+    
     var body: some View {
         NavigationStack(path: $path) {
             List {
@@ -22,16 +22,25 @@ struct JournalView: View {
                     Button(action: {
                         path.append("AddJournalEntry")
                     }) {
-                        Text("Add New Entry")
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.pink.opacity(0.3))
-                            .cornerRadius(10)
+                        Image(systemName: "plus")
+                            .font(.system(size: 24)) // Adjust the size of the "+" symbol
+                            .foregroundColor(Color.purple) // Change the color to match your design
+                            .frame(width: 100, height: 40) // Adjust the button's size
+                            .background(Color.purple.opacity(0.1)) // Light purple background
+                            .cornerRadius(20) // Rounded corners
+                        
+//                        Text("Add New Entry")
+//                            .frame(maxWidth: .infinity)
+//                            .padding()
+//                            .background(Color.pink.opacity(0.3))
+//                            .cornerRadius(10)
                     }
                     .padding(.vertical, 10)
+                    .frame(width: 500, height: 110)
+
                 }
                 .listRowBackground(Color(UIColor.systemGray6))
-
+                
                 // Section for displaying journal entries
                 Section {
                     ForEach(entries) { entry in
@@ -59,14 +68,14 @@ struct JournalView: View {
             }
         }
     }
-
-
+    
+    
     
     // Function to fetch journal entries from the backend
     func fetchJournalEntries() {
         guard let url = URL(string: "https://flask-app-91222939065.us-east1.run.app/getAllJournalEntries") else { return }
         
-        let bearerToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjI4YTQyMWNhZmJlM2RkODg5MjcxZGY5MDBmNGJiZjE2ZGI1YzI0ZDQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIzMjU1NTk0MDU1OS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6IjMyNTU1OTQwNTU5LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAxMTcwMzIwOTMzMjQwMzYwOTMwIiwiaGQiOiJjb3JuZWxsLmVkdSIsImVtYWlsIjoiY2RjMjM2QGNvcm5lbGwuZWR1IiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJCOWdYdDJrdlRNcXlucDBxTXV6THRRIiwiaWF0IjoxNzI4MTgwNjI4LCJleHAiOjE3MjgxODQyMjh9.jftF_m1oYQE971We1LivxdLSbIhv-_cganslh2xaihuJ4daBxXiW9oyorakG9ccadXRc7ZIVwvWVC67hfQtq9ctY7Ebi74vZWxeARoEvzltEHfOW0LmOYbji5s3Vpt3N5CS6gd0VpMpObcIqadKz_hCDjd--gcJxGQ_KifTSK5Lt_2mCuX9ZPFc4CV07q8DIXGsrjPT4-yMd_Oi9hXSpRUmrF9w_bgY75QeNcS9JOyaAqtLPjGvlIofYrVKinTyJPagqm_KVKYtTM7j720tO44Q2XnX6l9wIcyunLr8FXJVkvYJKS24Tue5SIoRY4a5IAYHYETOM7Ay7HOUY9u_gxA" // Replace with your actual token
+        let bearerToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjI4YTQyMWNhZmJlM2RkODg5MjcxZGY5MDBmNGJiZjE2ZGI1YzI0ZDQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIzMjU1NTk0MDU1OS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6IjMyNTU1OTQwNTU5LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAxMTcwMzIwOTMzMjQwMzYwOTMwIiwiaGQiOiJjb3JuZWxsLmVkdSIsImVtYWlsIjoiY2RjMjM2QGNvcm5lbGwuZWR1IiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiIyekVWbU9GMGFkUlM0YWd6clNJMWRRIiwiaWF0IjoxNzI4MTg1NTUwLCJleHAiOjE3MjgxODkxNTB9.I23JsHb8_PlHXKC9l7KDetq0TncAgjTqnjebhaYuvWW4J4mS6Jcblp4bZ-aT6AHs0jitl_AX_XStegYIQA6o4Bmyel0ZTOfPxYs-KE-yNaJDgL7D3c_XhCgGy6kTVogITuoaGscnGvjzGotWkIJ0rNTQNGgaNFYZF9UGBwN63lfn5QLUdlCP2xFVToHngFcUxHAkB4GpBX9TaXtJwbrebO1l2PT6cCq4E23qrZ7TrMPlc58Jv2ezVYQJXd8Ygf806oO_aj4FEwKrXdkHlQ0VwD0ruYD3gdVL51mc4TKB_2vgwhUxGGWzbY4w2fxlQMqGrk8bbypOXMdg4iyBA8H_zg" // Replace with your actual token
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"

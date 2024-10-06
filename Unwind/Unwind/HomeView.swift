@@ -18,7 +18,7 @@ struct HomeView: View {
                     Color(red: 0.94, green: 0.94, blue: 0.94)
                         .edgesIgnoringSafeArea(.all)
                 
-                VStack(spacing: 20) {
+                VStack(spacing: 15) {
                     
                     Image("cat")
                         .frame(width: 119.72414, height: 84)
@@ -28,9 +28,10 @@ struct HomeView: View {
                         VStack(spacing: 20) {
                             // Top "Good morning!" text
                             Text("Good morning!")
+                            
                                 .font(
                                     Font.custom("MADE Carving Soft PERSONAL USE", size: 28)
-                                        .weight(.medium)
+                                        .weight(.bold)
                                 )
                                 .fontWeight(.bold)
                                 .foregroundColor(.white)
@@ -56,7 +57,7 @@ struct HomeView: View {
                                     .offset(y: 15)
                             }
                             .padding()
-                            .background(Color(red: 0.53, green: 0.41, blue: 0.68))
+                            .background(Color(red: 0.67, green: 0.56, blue: 0.8))
                             .cornerRadius(15)
                         }
                         .padding(.horizontal, 20)
@@ -64,8 +65,8 @@ struct HomeView: View {
                         .frame(maxWidth: .infinity, alignment: .top)
                         .background(
                             RoundedRectangle(cornerRadius: 32)
-                                .fill(Color(red: 0.58, green: 0.45, blue: 0.72))
-                        )
+                                .fill(Color(red: 0.72, green: 0.62, blue: 0.83)))
+                        
                         .padding(5)
                     }
                     
@@ -76,7 +77,7 @@ struct HomeView: View {
                             Text("Let's journal!")
                                 .font(
                                     Font.custom("MADE Carving Soft PERSONAL USE", size: 28)
-                                        .weight(.medium)
+                                        .weight(.bold)
                                 )
                                 .multilineTextAlignment(.center)
                                 .foregroundColor(Color(red: 0.54, green: 0.45, blue: 0.65))
@@ -86,7 +87,7 @@ struct HomeView: View {
                             HStack {
                                 Spacer()
                                 Image(systemName: "chevron.right")
-                                    .foregroundColor(.white)
+                                    .foregroundColor(Color(red: 0.37, green: 0.25, blue: 0.5))
                             }
                             .padding()
                             .background(Color(red: 0.94, green: 0.92, blue: 0.98))
@@ -110,7 +111,7 @@ struct HomeView: View {
                             Text("Check-in")
                                 .font(
                                 Font.custom("MADE Carving Soft PERSONAL USE", size: 28)
-                                .weight(.medium)
+                                .weight(.bold)
                                 )
                                 .foregroundColor(Color(red: 0.67, green: 0.56, blue: 0.8))
 
@@ -132,7 +133,7 @@ struct HomeView: View {
                                 
                                 Image(systemName: "chevron.right")
                                     .frame(width:16, height:16)
-                                    .foregroundColor(.white)
+                                    .foregroundColor(Color(red: 0.37, green: 0.25, blue: 0.5))
                                     .padding(.trailing, 5)
                                     .offset(y: 15)
                             }

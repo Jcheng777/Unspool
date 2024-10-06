@@ -38,8 +38,10 @@ struct ContentView: View {
                         Image("profile")
                     }
             }
-            .toolbarBackground(.indigo, for: .tabBar)
-            .cornerRadius(32)
+            .onAppear() {
+                UITabBar.appearance().backgroundColor = .white
+            }
+
         }
     }
 }
