@@ -28,7 +28,7 @@ struct ContentView: View {
                         Image("home icon")
                     }
                 
-                MoodView()
+                SummaryView()
                     .tabItem {
                         Image("graph")
                     }
