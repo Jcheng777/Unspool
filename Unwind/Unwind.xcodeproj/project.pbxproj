@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9703140A2CB20E7C005E5988 /* JournalEntryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970314092CB20E74005E5988 /* JournalEntryDetailView.swift */; };
 		A072E7332CB1D06E00F869F1 /* JournalEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A072E7322CB1D06E00F869F1 /* JournalEntryView.swift */; };
 		A072E7352CB1ED9C00F869F1 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A072E7342CB1ED9C00F869F1 /* ProfileView.swift */; };
 		A072E7372CB21C1200F869F1 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A072E7362CB21C1200F869F1 /* RatingView.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		970314092CB20E74005E5988 /* JournalEntryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryDetailView.swift; sourceTree = "<group>"; };
 		A072E7322CB1D06E00F869F1 /* JournalEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryView.swift; sourceTree = "<group>"; };
 		A072E7342CB1ED9C00F869F1 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A072E7362CB21C1200F869F1 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 		A07910222CB10D0F008ED9A0 /* Unwind */ = {
 			isa = PBXGroup;
 			children = (
+				970314092CB20E74005E5988 /* JournalEntryDetailView.swift */,
 				A07910392CB1A89E008ED9A0 /* ChatView.swift */,
 				A079103D2CB1C787008ED9A0 /* HomeView.swift */,
 				A072E7362CB21C1200F869F1 /* RatingView.swift */,
@@ -166,6 +169,7 @@
 				A072E7332CB1D06E00F869F1 /* JournalEntryView.swift in Sources */,
 				A072E7372CB21C1200F869F1 /* RatingView.swift in Sources */,
 				A079103E2CB1C787008ED9A0 /* HomeView.swift in Sources */,
+				9703140A2CB20E7C005E5988 /* JournalEntryDetailView.swift in Sources */,
 				A07910262CB10D0F008ED9A0 /* ContentView.swift in Sources */,
 				A07910382CB18879008ED9A0 /* JournalEntry.swift in Sources */,
 				A07910242CB10D0F008ED9A0 /* UnwindApp.swift in Sources */,
